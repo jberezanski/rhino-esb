@@ -16,14 +16,14 @@ namespace Rhino.ServiceBus.DataStructures
             readerWriterLockSlim.EnterWriteLock();
             try
             {
+                values.Add(uniqueKey, val);
+                extras.Add(uniqueKey, extra);
                 List<TUniqueKey> value;
                 if (keys.TryGetValue(multiKey, out value) == false)
                 {
                     keys[multiKey] = value = new List<TUniqueKey>();
                 }
                 value.Add(uniqueKey);
-                values[uniqueKey] = val;
-                extras[uniqueKey] = extra;
             }
             finally
             {
